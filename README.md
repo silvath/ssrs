@@ -7,9 +7,9 @@ Antes de utilizar é necessário configurar os parametros localizados no Web.Con
 
 * ReportingServices
 
-Neste parâmetro deve ser configurado a url base do Reporting Services. 
-        Ex: http://tubarao/ReportServer_SS2016
-        Neste caso acima "tubarao" seria o nome do servidor aonde esta o Reporting Services. E "ReportServer_SS2016" o nome configurado da aplicação do Reporting Services.
+Neste parâmetro deve ser configurado a url base do Reporting Services.  
+        Ex: http://tubarao/ReportServer_SS2016.  
+        Neste caso "tubarao" seria o nome do servidor aonde esta o Reporting Services. E "ReportServer_SS2016" o nome configurado da aplicação do Reporting Services.
 
 * User
 
