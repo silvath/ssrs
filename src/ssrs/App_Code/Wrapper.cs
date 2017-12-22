@@ -1,5 +1,4 @@
 ﻿
-using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -35,30 +34,21 @@ namespace ssrs.App_Code
             return (CredentialCache.DefaultCredentials);
         }
 
-        private IReportServerCredentials GetCredentialViewer()
-        {
-            string user = ConfigurationManager.AppSettings["User"];
-            if (!string.IsNullOrEmpty(user))
-            {
-                string password = ConfigurationManager.AppSettings["Password"];
-                string domain = ConfigurationManager.AppSettings["Domain"];
-                return (new CustomReportCredentials(user, password, domain));
-            }
-            return (null);
-        }
-
         public CatalogItem[] GetItems(string path)
         {
             return(_ssrs.ListChildren(path, false));
         }
 
-        public void ConfigureReport(ReportViewer reportViewer, string path)
+        public string CreateReportUri(string type, string path)
         {
-            reportViewer.ServerReport.ReportServerUrl = new Uri(ConfigurationManager.AppSettings["ReportingServices"]);
-            reportViewer.ServerReport.ReportPath = path;
-            IReportServerCredentials credentials = this.GetCredentialViewer();
-            if (credentials != null)
-                reportViewer.ServerReport.ReportServerCredentials = credentials;
+            bool showParameters = true;
+            bool showReportToolbar = true;
+            //Here we can heve MobileReport (DataZen) and PowerBIReport (PowerBI)
+            if (type == "Report")
+            {
+                return(string.Format("{0}?{1}&rs:Command=Render{2}{3}&rc:ShowBackButton=true", ConfigurationManager.AppSettings["ReportingServices"], path, !showParameters ? "&rc:Parameters=Collapsed" : "", showReportToolbar ? "" : "&rc:Toolbar=false"));
+            }
+            return (string.Empty);
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="View.aspx.cs" Inherits="ssrs.View" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,10 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="True" EnablePageMethods="True" EnableScriptGlobalization="true" EnableScriptLocalization="true"></asp:ScriptManager>
-        <rsweb:ReportViewer ID="ReportViewer" runat="server" Width="100%" Height="100%" ProcessingMode="Remote" AsyncRendering="true" PromptAreaCollapsed="true" ShowPromptAreaButton="true" ShowBackButton="True" Font-Names="Verdana"  Font-Size="8pt" ></rsweb:ReportViewer>
-        <div>
-        </div>
+    <div style="position: absolute; top: 0px; left: 0px; width: 99%; height: 99%;">
+        <iframe runat="server" id="iFrameReport" name="iFrameReport" frameBorder="0" style="position: absolute; top: 5px; left: 5px; width: 100%; height: 100%;"></iframe>
+    </div>
     </form>
 </body>
 </html>

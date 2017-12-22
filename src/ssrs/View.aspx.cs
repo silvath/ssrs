@@ -14,15 +14,14 @@ namespace ssrs
         {
             if (!this.IsPostBack)
             {
-                string path = this.Request.QueryString["Url"];
-                this.ViewReport(path);
+                this.ViewReport(this.Request.QueryString["type"], this.Request.QueryString["Url"]);
             }
         }
 
-        private void ViewReport(string path)
+        private void ViewReport(string type, string path)
         {
             Wrapper wrapper = new Wrapper();
-            wrapper.ConfigureReport(this.ReportViewer, path);
+            this.iFrameReport.Attributes["Src"] = wrapper.CreateReportUri(type ?? "Report", path);
         }
     }
 }
